@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.weiguozhao.mapper.OrderMapper">
+    <resultMap id="OrderItemMap" type="OrderItem">
+        <id column="oid" property="oid"></id>
+        <result column="oprice" property="oprice"></result>
+        <result column="cname" property="cname"></result>
+        <result column="getcity" property="getcity"></result>
+        <result column="backcity" property="backcity"></result>
+        <result column="ostatus" property="ostatus"></result>
+    </resultMap>
+
+    <select id="findALLOrderItem" resultMap="OrderItemMap">
+    SELECT
+        o.id oid,
+        o.oprice oprice,
+        ca.name cname,
+        cg.name getcity,
+        cb.name backcity,
+        o.status ostatus
+    FROM
+        sys_order o
+    INNER JOIN
+        sys_car ca
+    ON
+        o.cid=ca.cid
+    INNER JOIN
+        sys_city cg
+    ON
+        o.getid=cg.id
+    INNER JOIN
+        sys_city cb
+    ON
+        o.backid=cb.id
+    </select>
+</mapper>
