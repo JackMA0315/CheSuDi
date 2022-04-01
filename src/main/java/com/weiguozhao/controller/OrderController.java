@@ -15,7 +15,9 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/order")
-public class OrderController {
+public class
+
+OrderController {
     @Autowired
     private OrderService orderService;
     @RequestMapping("/all")
@@ -45,6 +47,13 @@ public class OrderController {
         if (flag){
             responseData.setInfo("订单添加成功，点击查看订单列表");
         }
+        return responseData;
+    }
+
+    @RequestMapping("/del")
+    public ResponseData delOrder(@RequestParam("oid") Integer oid){
+        ResponseData responseData = new ResponseData();
+        responseData.setInfo("进入删除订单控制器,要删除的订单编号是"+oid);
         return responseData;
     }
 }
