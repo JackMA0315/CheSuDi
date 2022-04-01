@@ -29,7 +29,6 @@ public class CityController {
 
     @RequestMapping("/citys")
     public ResponseData getCitys(@RequestParam("getid") Integer getid,@RequestParam("backid") Integer backid){
-        System.out.println(getid+backid);
         City getcity = cityService.getCity(getid);
         City backcity = cityService.getCity(backid);
         CityVo cityVo = new CityVo();

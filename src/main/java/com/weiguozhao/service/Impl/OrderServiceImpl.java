@@ -3,6 +3,7 @@ package com.weiguozhao.service.Impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.weiguozhao.mapper.OrderMapper;
+import com.weiguozhao.pojo.Order;
 import com.weiguozhao.pojo.OrderItem;
 import com.weiguozhao.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +31,14 @@ public class OrderServiceImpl implements OrderService {
             return map;
         }
         return null;
+    }
+
+    @Override
+    public boolean addOrderItem(Order order) {
+        int i = orderMapper.addOrder(order);
+        if (i!=0){
+            return true;
+        }
+        return false;
     }
 }

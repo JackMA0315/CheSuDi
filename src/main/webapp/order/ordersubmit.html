@@ -185,7 +185,7 @@
         var total = $("#total").html();
         $.ajax({
             type:"get",
-            url:"/carsys/order/add.do"+id + "&oprice="+ total,
+            url:"/carsys/order/add"+id + "&oprice="+ total,
             dataType:"json",
             success:function(data){
                 alert(data.info);

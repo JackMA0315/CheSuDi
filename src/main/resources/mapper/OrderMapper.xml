@@ -26,7 +26,7 @@
     INNER JOIN
         sys_car ca
     ON
-        o.cid=ca.cid
+        o.cid=ca.id
     INNER JOIN
         sys_city cg
     ON
@@ -36,4 +36,11 @@
     ON
         o.backid=cb.id
     </select>
+
+    <insert id="addOrder">
+INSERT INTO sys_order
+	(cid,uid,getid,backid,oprice,status)
+VALUES
+	(#{cid},#{uid},#{getid},#{backid},#{oprice},#{status})
+    </insert>
 </mapper>
