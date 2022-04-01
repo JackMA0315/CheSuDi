@@ -4,4 +4,61 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.weiguozhao.mapper.CarMapper">
+    <resultMap id="CarMap" type="Car">
+        <id column="id" property="id"></id>
+        <result column="name" property="name"></result>
+        <result column="type" property="type"></result>
+        <result column="sitnum" property="sitnum"></result>
+        <result column="cid" property="cid"></result>
+        <result column="price" property="price"></result>
+        <result column="number" property="number"></result>
+        <result column="picture" property="picture"></result>
+    </resultMap>
+
+    <select id="getAllCarsByPrice" parameterType="java.lang.Integer" resultMap="CarMap">
+    SELECT
+        id,
+        name,
+        type,
+        sitnum,
+        cid,
+        price,
+        number,
+        picture
+    FROM
+        sys_car
+    where cid = #{id}
+    order by price asc
+    </select>
+
+    <select id="getAllCarsByNumber" parameterType="java.lang.Integer" resultMap="CarMap">
+    SELECT
+        id,
+        name,
+        type,
+        sitnum,
+        cid,
+        price,
+        number,
+        picture
+    FROM
+        sys_car
+    where cid = #{id}
+    order by number asc
+    </select>
+
+    <select id="getCar" parameterType="java.lang.Integer" resultType="Car">
+    SELECT
+        id,
+        name,
+        type,
+        sitnum,
+        cid,
+        price,
+        number,
+        picture
+    FROM
+        sys_car
+    where id = #{cid}
+    </select>
 </mapper>

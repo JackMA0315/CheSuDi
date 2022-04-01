@@ -25,11 +25,8 @@ public class OrderServiceImpl implements OrderService {
         List<OrderItem> list = orderMapper.findALLOrderItem();
         if (list!=null){
             PageInfo info = new PageInfo(list);
-            /*System.out.println(info);*/
             map.put("total",info.getTotal());
             map.put("rows",info.getList());
-/*            System.out.println(info.getTotal());
-            System.out.println(info.getList());*/
             return map;
         }
         return null;

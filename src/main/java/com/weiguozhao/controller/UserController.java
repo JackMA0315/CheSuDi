@@ -14,12 +14,11 @@ import java.util.Map;
 @RestController
 @RequestMapping("/user")
 public class UserController {
+    private boolean userloginflag = false;
     @Autowired
     private UserService userService;
     @RequestMapping("/register")
     public ResponseData userRegister(User user){
-        System.out.print("获取路径参数user：");
-        System.out.println(user);
         int i = userService.addUser(user);
         ResponseData responseData = new ResponseData();
         if (i!=0){
@@ -31,11 +30,20 @@ public class UserController {
 
     @RequestMapping("/login")
     public ResponseData userLogin(User user){
-        System.out.print("获取路径参数user：");
-        System.out.println(user);
         boolean flag = userService.findUser(user);
         ResponseData responseData = new ResponseData();
         if (flag){
+            responseData.setCode(1);
+            userloginflag = true;
+            return responseData;
+        }
+        return responseData;
+    }
+
+    @RequestMapping("/denglu")
+    public ResponseData userDengLu(){
+        ResponseData responseData = new ResponseData();
+        if (userloginflag){
             responseData.setCode(1);
             return responseData;
         }

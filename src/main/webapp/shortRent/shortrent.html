@@ -206,7 +206,7 @@
     function load(pid){
         $.ajax({
             type:"post",
-            url:"/carsys/city/select.do?pid="+pid,
+            url:"/carsys/city/select?pid="+pid,
             dataType:"json",
             success:function(data){
                 //id为0时为父类
@@ -250,7 +250,7 @@
     $(function () {
         $.ajax({
             type:"post",
-            url:"/carsys/user/denglu.do",
+            url:"/carsys/user/denglu",
             dataType:"json",
             success:function(data){
                 //id为0时为父类

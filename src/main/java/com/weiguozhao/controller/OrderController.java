@@ -16,8 +16,6 @@ public class OrderController {
     private OrderService orderService;
     @RequestMapping("/all")
     public ResponseData getAllOrderInfo(@RequestParam("page") Integer page){
-/*        System.out.print("获取路径参数page：");
-        System.out.println(page);*/
         Map<String, Object> map = orderService.getAllOrderItem(page, 15);
         ResponseData responseData = new ResponseData();
         responseData.setCode(1);
@@ -27,9 +25,6 @@ public class OrderController {
 
     @RequestMapping("/add")
     public ResponseData addOrder(@RequestParam("oprice") Integer oprice){
-        System.out.print("获取路径参数oprice：");
-        System.out.println(oprice);
-        /*Map<String, Object> map = orderService.getAllOrderItem(page, 15);*/
         ResponseData responseData = new ResponseData();
         responseData.setCode(1);
         responseData.setInfo(1);

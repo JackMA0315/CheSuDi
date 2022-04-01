@@ -13,9 +13,7 @@ public class MyAspect {
     public Object myround(ProceedingJoinPoint proceedingJoinPoint){
         Object obj = null ;
         try{
-            System.out.println("MyAspect类执行前置通知");
             obj = proceedingJoinPoint.proceed();
-            System.out.println("MyAspect类执行后置通知");
             return obj ;
         } catch (Throwable throwable) {
             throwable.printStackTrace();
