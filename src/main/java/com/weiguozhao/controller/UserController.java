@@ -14,7 +14,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/user")
 public class UserController {
-    private boolean userloginflag = false;
+    private User loginUser=null;
     @Autowired
     private UserService userService;
     @RequestMapping("/register")
@@ -30,11 +30,11 @@ public class UserController {
 
     @RequestMapping("/login")
     public ResponseData userLogin(User user){
-        boolean flag = userService.findUser(user);
+        User user1 = userService.findUser(user);
         ResponseData responseData = new ResponseData();
-        if (flag){
+        if (user1!=null){
             responseData.setCode(1);
-            userloginflag = true;
+            loginUser=user1;
             return responseData;
         }
         return responseData;
@@ -43,9 +43,23 @@ public class UserController {
     @RequestMapping("/denglu")
     public ResponseData userDengLu(){
         ResponseData responseData = new ResponseData();
-        if (userloginflag){
+        if (loginUser!=null){
+            User user = userService.findUser(loginUser);
             responseData.setCode(1);
+            responseData.setInfo(loginUser);
             return responseData;
+        }
+        return responseData;
+    }
+
+    @RequestMapping("/update")
+    public ResponseData userUpdate(User user){
+        user.setId(loginUser.getId());
+        boolean flag = userService.updateUser(user);
+        ResponseData responseData = new ResponseData();
+        if (flag){
+            responseData.setCode(1);
+            loginUser.setTel(user.getTel());
         }
         return responseData;
     }

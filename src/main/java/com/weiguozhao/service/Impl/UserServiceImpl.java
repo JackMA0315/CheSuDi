@@ -19,9 +19,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean findUser(User user) {
+    public User findUser(User user) {
         User finduser = userMapper.findUser(user);
-        if (finduser!=null){
+        return finduser;
+    }
+
+    @Override
+    public boolean updateUser(User user) {
+        int i = userMapper.updateUser(user);
+        if (i!=0){
             return true;
         }
         return false;

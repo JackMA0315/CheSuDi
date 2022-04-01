@@ -25,4 +25,8 @@ VALUES
     WHERE tel=#{tel}
     AND PASSWORD=#{password}
     </select>
+
+    <update id="updateUser">
+        UPDATE sys_user SET tel = #{tel}WHERE id = #{id}
+    </update>
 </mapper>
